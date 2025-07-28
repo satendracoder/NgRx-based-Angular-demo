@@ -1,0 +1,21 @@
+<h2>User List</h2>
+
+<!-- Loading -->
+<div *ngIf="loading$ | async" class="loader">Loading users...</div>
+
+<!-- Error
+<div *ngIf="error$ | async as error" class="error">
+    Error loading users: {{ error.message || error }}
+</div> -->
+
+<!-- Users -->
+<ul *ngIf="(users$ | async)?.length">
+    <li *ngFor="let user of users$ | async">
+        <strong>{{ user.name }}</strong> – {{ user.email }}
+    </li>
+</ul>
+
+<!-- Empty -->
+<div *ngIf="!(users$ | async)?.length && !(loading$ | async)">
+    No users found.
+</div>
